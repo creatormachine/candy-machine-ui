@@ -10,7 +10,7 @@ const WalletConnectionProvider = dynamic(
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WalletConnectionProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </WalletConnectionProvider>
   );
 }
