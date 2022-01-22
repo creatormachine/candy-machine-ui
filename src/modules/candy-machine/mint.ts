@@ -9,6 +9,7 @@ import {
   getMasterEdition,
   getCandyMachineCreator,
 } from "./helpers";
+import { sendTransactions } from "./connection";
 import { SystemProgram } from "@solana/web3.js";
 import { CIVIC, TOKEN_METADATA_PROGRAM_ID } from "config";
 import { CandyMachineAccount } from "./types";

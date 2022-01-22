@@ -4,6 +4,7 @@ import {
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
   CIVIC,
 } from "config";
+import { formatNumber } from "modules/utils";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import * as anchor from "@project-serum/anchor";
 import {
@@ -193,3 +194,13 @@ export function createAssociatedTokenAccountInstruction(
     data: Buffer.from([]),
   });
 }
+
+export const getMintPrice = (candyMachine: CandyMachineAccount): string => {
+  const price = formatNumber.asNumber(
+    candyMachine.state.isPresale &&
+      candyMachine.state.whitelistMintSettings?.discountPrice
+      ? candyMachine.state.whitelistMintSettings?.discountPrice!
+      : candyMachine.state.price!
+  );
+  return `◎ ${price}`;
+};

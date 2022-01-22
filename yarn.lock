@@ -167,13 +167,13 @@
     eip1193-provider "^1.0.1"
     js-sha3 "^0.8.0"
 
-"@civic/solana-gateway-react@^0.4.9":
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@civic/solana-gateway-react/-/solana-gateway-react-0.4.9.tgz#0c24ce7e27bcbdd489739a01c830cb921c891322"
-  integrity sha512-Ky4R8HBCQEg+nqqjtpo7Qup1ng0vy3BCPsf1WUhXRctQK9X5wb0XbAxiU6tKn3GeouhKilYWbTUzi1sU6YeTCg==
+"@civic/solana-gateway-react@^0.4.10":
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/@civic/solana-gateway-react/-/solana-gateway-react-0.4.10.tgz#9fec268d1e2bf382f93a820a9a9e56dc223117eb"
+  integrity sha512-de8JeMr0nKfsrTWMQa5H9uk+V6UBqxDICMK2l19TAz9LPIc0yqfu8nvbWkFdUylasYsu15kvu4Vg4eHLAOs/7A==
   dependencies:
     "@identity.com/prove-solana-wallet" "^0.2.3"
-    "@identity.com/solana-gateway-ts" "^0.4.4"
+    "@identity.com/solana-gateway-ts" "^0.7.0-beta1"
     "@solana/web3.js" "^1.20.0"
     "@types/styled-components" "^5.1.15"
     fetch-retry-ts "^1.1.24"
@@ -261,10 +261,10 @@
     "@solana/web3.js" "^1.22.0"
     bs58 "^4.0.1"
 
-"@identity.com/solana-gateway-ts@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@identity.com/solana-gateway-ts/-/solana-gateway-ts-0.4.4.tgz#d201a7ddea26bff1b55a7557d5547e9a02c657ea"
-  integrity sha512-CaP9gdF6cSOUU+mWrCazaUAmgUzfrCwzobUwq68BCWofl2PEMkqiQyWWJhj1zeyChFx88pivSlPET7DVss407g==
+"@identity.com/solana-gateway-ts@^0.7.0-beta1":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@identity.com/solana-gateway-ts/-/solana-gateway-ts-0.7.0.tgz#61ece3f781148b040778bc936128039e52918ecc"
+  integrity sha512-hxOHbQDH3mQ6cBIvEsUZFICJAfgv0V8GB2QpnvXwHoAnPVRpYACHb98P2i93gwyC+jFUEJ5fOQo4eaa06bnAvw==
   dependencies:
     "@solana/web3.js" "^1.22.0"
     async-retry "^1.3.3"
@@ -1411,6 +1411,11 @@ circular-json@^0.5.9:
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.5.9.tgz#932763ae88f4f7dead7a0d09c8a51a4743a53b1d"
   integrity sha512-4ivwqHpIFJZBuhN3g/pEcdbnGUywkBblloGbkglyloVjjR3uT6tieI89MVOfbP2tHX5sgb01FuLgAOzebNlJNQ==
+
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -3126,6 +3131,13 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
+react-countdown@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-countdown/-/react-countdown-2.3.2.tgz#4cc27f28f2dcd47237ee66e4b9f6d2a21fc0b0ad"
+  integrity sha512-Q4SADotHtgOxNWhDdvgupmKVL0pMB9DvoFcxv5AzjsxVhzOVxnttMbAywgqeOdruwEAmnPhOhNv/awAgkwru2w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-dom@17.0.2, react-dom@^17.0.0:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
@@ -3144,6 +3156,11 @@ react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-loader-spinner@^5.0.10:
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-5.0.10.tgz#7a95e1485a22ae9663dfa0c740744ad4520dd2d6"
+  integrity sha512-wYYs3/8NQFHOFGvvcpaPJCHxjDCuk1pAEG3ziuNoQwH6hxBbIZiQLrfkXlrLKNtnu9vBeeDZp8PljMAduGT5Mg==
 
 react-refresh@0.8.3:
   version "0.8.3"

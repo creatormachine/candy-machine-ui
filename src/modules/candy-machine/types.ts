@@ -12,6 +12,12 @@ export interface AlertState {
   severity: "success" | "info" | "warning" | "error" | undefined;
 }
 
+export interface CandyMachineAccount {
+  id: anchor.web3.PublicKey;
+  program: anchor.Program;
+  state: CandyMachineState;
+}
+
 export interface CandyMachineState {
   itemsAvailable: number;
   itemsRedeemed: number;

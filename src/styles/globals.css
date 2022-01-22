@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#mint-page {
+  padding: 10px;
+  background: radial-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9)),
+    url("/millionpoundape-bg.png") repeat center center fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+  @apply bg-blue-700;
+}

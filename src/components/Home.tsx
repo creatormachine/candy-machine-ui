@@ -12,11 +12,13 @@ import {
 import { WalletConnectButton } from "@solana/wallet-adapter-react-ui";
 import { GatewayProvider } from "@civic/solana-gateway-react";
 import { CANDY_MACHINE_PROGRAM } from "config";
+import Container from "components/Container";
+import MintButton from "components/MintButton";
+import MintDetails from "./MintDetails";
 
 interface HomeProps {
   candyMachineId?: anchor.web3.PublicKey;
   connection: anchor.web3.Connection;
-  startDate: number;
   txTimeout: number;
   rpcHost: string;
 }
@@ -24,7 +26,6 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({
   candyMachineId,
   connection,
-  startDate,
   txTimeout,
   rpcHost,
 }) => {
@@ -36,6 +37,7 @@ const Home: React.FC<HomeProps> = ({
     severity: undefined,
   });
   const wallet = useWallet();
+
   const anchorWallet = useMemo(() => {
     if (
       !wallet ||
@@ -140,38 +142,52 @@ const Home: React.FC<HomeProps> = ({
   }, [anchorWallet, candyMachineId, connection, refreshCandyMachineState]);
 
   return (
-    <div>
+    <Container>
       {!wallet.connect ? (
         <WalletConnectButton />
       ) : (
         <>
-          <div>
-            {candyMachine?.state.isActive &&
-            candyMachine?.state.gatekeeper &&
-            wallet.publicKey &&
-            wallet.signTransaction ? (
-              <GatewayProvider
-                wallet={{
-                  publicKey:
-                    wallet.publicKey || new PublicKey(CANDY_MACHINE_PROGRAM),
-                  //@ts-ignore
-                  signTransaction: wallet.signTransaction,
-                }}
-                gatekeeperNetwork={
-                  candyMachine?.state?.gatekeeper?.gatekeeperNetwork
-                }
-                clusterUrl={rpcHost}
-                options={{ autoShowModal: false }}
-              >
-                <div />
-              </GatewayProvider>
-            ) : (
-              <h1>Hello world</h1>
-            )}
-          </div>
+          <section
+            className="px-4 py-10 w-full md:w-1/3 m-auto bg-gray flex items-center"
+            style={{ boxShadow: "8px 6px 0px 0px #00000080" }}
+          >
+            <div className="mx-auto text-center">
+              <MintDetails candyMachine={candyMachine} />
+              {candyMachine?.state.isActive &&
+              candyMachine?.state.gatekeeper &&
+              wallet.publicKey &&
+              wallet.signTransaction ? (
+                <GatewayProvider
+                  wallet={{
+                    publicKey:
+                      wallet.publicKey || new PublicKey(CANDY_MACHINE_PROGRAM),
+                    //@ts-ignore
+                    signTransaction: wallet.signTransaction,
+                  }}
+                  gatekeeperNetwork={
+                    candyMachine?.state?.gatekeeper?.gatekeeperNetwork
+                  }
+                  clusterUrl={rpcHost}
+                  options={{ autoShowModal: false }}
+                >
+                  <MintButton
+                    candyMachine={candyMachine}
+                    isMinting={isUserMinting}
+                    onMint={onMint}
+                  />
+                </GatewayProvider>
+              ) : (
+                <MintButton
+                  candyMachine={candyMachine}
+                  isMinting={isUserMinting}
+                  onMint={onMint}
+                />
+              )}
+            </div>
+          </section>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

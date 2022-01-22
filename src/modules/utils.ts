@@ -9,6 +9,14 @@ export const sleep = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+export const toDate = (value?: anchor.BN) => {
+  if (!value) {
+    return;
+  }
+
+  return new Date(value.toNumber() * 1000);
+};
+
 const numberFormater = new Intl.NumberFormat("en-US", {
   style: "decimal",
   minimumFractionDigits: 2,
