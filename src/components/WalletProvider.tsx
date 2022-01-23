@@ -16,8 +16,11 @@ import {
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { NETWORK } from "config";
 
+// Default styles that can be overridden by your app
+require("@solana/wallet-adapter-react-ui/styles.css");
+
 const WalletConnectionProvider: React.FC = ({ children }) => {
-  const endpoint = useMemo(() => clusterApiUrl(NETWORK), []);
+  const endpoint = useMemo(() => clusterApiUrl(NETWORK), [NETWORK]);
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
@@ -28,7 +31,7 @@ const WalletConnectionProvider: React.FC = ({ children }) => {
       new SolletWalletAdapter({ network: NETWORK }),
       new SolletExtensionWalletAdapter({ network: NETWORK }),
     ],
-    []
+    [NETWORK]
   );
 
   return (

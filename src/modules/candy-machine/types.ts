@@ -6,12 +6,6 @@ export interface BlockhashAndFeeCalculator {
   feeCalculator: FeeCalculator;
 }
 
-export interface AlertState {
-  open: boolean;
-  message: string;
-  severity: "success" | "info" | "warning" | "error" | undefined;
-}
-
 export interface CandyMachineAccount {
   id: anchor.web3.PublicKey;
   program: anchor.Program;

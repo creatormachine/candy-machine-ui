@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Home from "components/Home";
+import { Toaster } from "react-hot-toast";
 import {
   CONNECTION,
   TX_TIMEOUT_IN_MILLISECONDS,
@@ -21,6 +22,7 @@ const Index: NextPage = () => {
         txTimeout={TX_TIMEOUT_IN_MILLISECONDS}
         rpcHost={RPC_HOST}
       />
+      <Toaster />
     </main>
   );
 };

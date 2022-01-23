@@ -28,7 +28,7 @@ const MintDetails: React.FC<MintDetailsProps> = ({ candyMachine }) => {
     <Container>
       {candyMachine && (
         <Container>
-          <h1 className="text-xl my-4 font-bold text-white">Mint ape</h1>
+          <h1 className="text-xl my-4 font-bold text-white">Mint NFT</h1>
           <p className="text-white mb-3">
             <MintCountdown
               date={date}

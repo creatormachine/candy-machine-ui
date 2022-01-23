@@ -1,20 +1,20 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
 import * as anchor from "@project-serum/anchor";
 import { CandyMachineAccount } from "modules/candy-machine/types";
-import { AlertState } from "modules/candy-machine/types";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { getCandyMachineState } from "modules/candy-machine/helpers";
 import { PublicKey } from "@solana/web3.js";
+import toast from "react-hot-toast";
 import {
   awaitTransactionSignatureConfirmation,
   mintOneToken,
 } from "modules/candy-machine/mint";
-import { WalletConnectButton } from "@solana/wallet-adapter-react-ui";
 import { GatewayProvider } from "@civic/solana-gateway-react";
 import { CANDY_MACHINE_PROGRAM } from "config";
 import Container from "components/Container";
 import MintButton from "components/MintButton";
 import MintDetails from "./MintDetails";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 interface HomeProps {
   candyMachineId?: anchor.web3.PublicKey;
@@ -31,11 +31,6 @@ const Home: React.FC<HomeProps> = ({
 }) => {
   const [isUserMinting, setIsUserMinting] = useState<boolean>(false);
   const [candyMachine, setCandyMachine] = useState<CandyMachineAccount>();
-  const [alertState, setAlertState] = useState<AlertState>({
-    open: false,
-    message: "",
-    severity: undefined,
-  });
   const wallet = useWallet();
 
   const anchorWallet = useMemo(() => {
@@ -95,43 +90,28 @@ const Home: React.FC<HomeProps> = ({
         }
 
         if (status && !status.err) {
-          setAlertState({
-            open: true,
-            message: "Congratulations! Mint succeeded!",
-            severity: "success",
-          });
+          toast.success("Congratulations! Mint succeeded!");
         } else {
-          setAlertState({
-            open: true,
-            message: "Mint failed! Please try again!",
-            severity: "error",
-          });
+          toast.error("Mint failed! Please try again!");
         }
       }
     } catch (error: any) {
-      let message = error.msg || "Minting failed! Please try again!";
       if (!error.msg) {
         if (!error.message) {
-          message = "Transaction Timeout! Please try again.";
+          toast.error("Transaction Timeout! Please try again.");
         } else if (error.message.indexOf("0x137")) {
-          message = `SOLD OUT!`;
+          toast.error("SOLD OUT!");
         } else if (error.message.indexOf("0x135")) {
-          message = `Insufficient funds to mint. Please fund your wallet.`;
+          toast.error("Insufficient funds to mint. Please fund your wallet.");
         }
       } else {
         if (error.code === 311) {
-          message = `SOLD OUT!`;
+          toast.error("SOLD OUT!");
           window.location.reload();
         } else if (error.code === 312) {
-          message = `Minting period hasn't started yet.`;
+          toast.error("Minting period hasn't started yet.");
         }
       }
-
-      setAlertState({
-        open: true,
-        message,
-        severity: "error",
-      });
     } finally {
       setIsUserMinting(false);
     }
@@ -141,16 +121,27 @@ const Home: React.FC<HomeProps> = ({
     refreshCandyMachineState();
   }, [anchorWallet, candyMachineId, connection, refreshCandyMachineState]);
 
+  console.log("wallet", wallet);
+
   return (
     <Container>
-      {!wallet.connect ? (
-        <WalletConnectButton />
-      ) : (
-        <>
-          <section
-            className="px-4 py-10 w-full md:w-1/3 m-auto bg-gray flex items-center"
-            style={{ boxShadow: "8px 6px 0px 0px #00000080" }}
-          >
+      <section
+        className="px-4 py-10 w-full md:w-1/3 m-auto bg-gray flex items-center"
+        style={{ boxShadow: "8px 6px 0px 0px #00000080" }}
+      >
+        {!wallet.connected ? (
+          <div className="flex items-center justify-center w-full">
+            <div>
+              <h1 className="text-xl my-4 font-bold text-white">
+                Connect Your Wallet
+              </h1>
+              <div className="flex justify-center items-center">
+                <WalletMultiButton />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
             <div className="mx-auto text-center">
               <MintDetails candyMachine={candyMachine} />
               {candyMachine?.state.isActive &&
@@ -184,9 +175,9 @@ const Home: React.FC<HomeProps> = ({
                 />
               )}
             </div>
-          </section>
-        </>
-      )}
+          </>
+        )}
+      </section>
     </Container>
   );
 };
