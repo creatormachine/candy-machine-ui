@@ -121,8 +121,6 @@ const Home: React.FC<HomeProps> = ({
     refreshCandyMachineState();
   }, [anchorWallet, candyMachineId, connection, refreshCandyMachineState]);
 
-  console.log("wallet", wallet);
-
   return (
     <Container>
       <section
