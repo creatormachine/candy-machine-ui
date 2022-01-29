@@ -4,8 +4,8 @@
 
 #mint-page {
   padding: 10px;
-  background: radial-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9)),
-    url("/millionpoundape-bg.png") repeat center center fixed;
+  background: radial-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.4)),
+    url("/bg.png") repeat center center fixed;
   height: 100vh;
   width: 100vw;
   overflow: hidden;

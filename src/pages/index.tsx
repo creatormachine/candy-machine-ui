@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Home from "components/Home";
 import { Toaster } from "react-hot-toast";
+import Head from "next/head";
 import {
   CONNECTION,
   TX_TIMEOUT_IN_MILLISECONDS,
@@ -9,13 +10,11 @@ import {
 } from "config";
 
 const Index: NextPage = () => {
-  console.log(CONNECTION);
-  console.log(TX_TIMEOUT_IN_MILLISECONDS);
-  console.log(RPC_HOST);
-  console.log(CANDY_MACHINE_ID);
-
   return (
     <main id="mint-page">
+      <Head>
+        <title>Athletic Tigerz</title>
+      </Head>
       <Home
         candyMachineId={CANDY_MACHINE_ID}
         connection={CONNECTION}
